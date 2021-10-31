@@ -1,0 +1,353 @@
+{% load static %}
+<html>
+
+<head>
+    <title>SG Awards</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700i" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script src="{% static 'user/landing/booklet/jquery.easing.1.3.js' %}" type="text/javascript"></script>
+    <script src="{% static 'user/landing/booklet/jquery.booklet.1.1.0.min.js' %}" type="text/javascript"></script>
+
+    <link href="{% static 'user/landing/booklet/jquery.booklet.1.1.0.css' %}" type="text/css" rel="stylesheet" media="screen" />
+
+
+    <style>
+
+    *{
+        margin:0;
+        padding:0;
+    }
+    body{
+        background:#60a3bc;
+        color:#444;
+        font-size:12px;
+        color: #333;
+        font-family: 'Oswald', sans-serif;
+    }
+
+
+    .booklet           {
+        width:400px;
+        height:607px;
+        position:relative;
+        margin:0 auto 10px;
+        -moz-box-shadow:0px 0px 1px #fff;
+        -webkit-box-shadow:0px 0px 1px #fff;
+        box-shadow:0px 0px 1px #fff;
+        -moz-border-radius:10px;
+        -webkit-border-radius:10px;
+        border-radius:10px;
+    }
+    .booklet .b-wrap-left  {
+        background:#fff url('{% static "user/landing/images/left_bg.jpg" %}') no-repeat top left;
+        -webkit-border-top-left-radius: 10px;
+        -webkit-border-bottom-left-radius: 10px;
+        -moz-border-radius-topleft:10px;
+        -moz-border-radius-bottomleft: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    .booklet .b-wrap-right {
+        background:#efefef url('{% static "user/landing/images/right_bg.jpg" %}') no-repeat top left;
+        -webkit-border-top-right-radius: 10px;
+        -webkit-border-bottom-right-radius: 10px;
+        -moz-border-radius-topright: 10px;
+        -moz-border-radius-bottomright: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    .booklet .b-counter {
+        bottom:10px;
+        position:absolute;
+        display:block;
+        width:90%;
+        height:20px;
+        border-top:1px solid #ddd;
+        color:#222;
+        text-align:center;
+        font-size:12px;
+        padding:5px 0 0;
+        background:transparent;
+        -moz-box-shadow:0px -1px 1px #fff;
+        -webkit-box-shadow:0px -1px 1px #fff;
+        box-shadow:0px -1px 1px #fff;
+        opacity:0.8;
+    }
+    .book_wrapper{
+        margin:0 auto;
+        padding-top:50px;
+        width:905px;
+        height:540px;
+        position:relative;
+        background:transparent url('{% static "user/landing/images/bg.png" %}') no-repeat 9px 27px;
+    }
+    .book_wrapper h1{
+        color:orange;
+        margin:5px 5px 5px 15px;
+        font-size:24px;
+        background:transparent url('{% static "user/landing/images/h1.png" %}') no-repeat bottom left;
+        padding-bottom:7px;
+        text-transform: uppercase;
+        font-weight: normal;
+    }
+    .book_wrapper p{
+        font-size:15px;
+        margin:5px 5px 5px 15px;
+    }
+    .book_wrapper a.article,
+    .book_wrapper a.demo{
+        background:transparent url('{% static "user/landing/images/circle.png" %}') no-repeat 50% 0px;
+        display:block;
+        width:95px;
+        height:41px;
+        text-decoration:none;
+        outline:none;
+        font-size:16px;
+        color:#555;
+        float:left;
+        line-height:41px;
+        padding-left:47px;
+    }
+    .book_wrapper a.demo{
+        margin-left:50px;
+    }
+    .book_wrapper a.article:hover,
+    .book_wrapper a.demo:hover{
+        background-position:50% -41px;
+        color:#13386a;
+    }
+    .book_wrapper img{
+        margin:10px 0px 5px 35px;
+        width:300px;
+        padding:4px;
+        border:1px solid #ddd;
+        -moz-box-shadow:1px 1px 1px #fff;
+        -webkit-box-shadow:1px 1px 1px #fff;
+        box-shadow:1px 1px 1px #fff;
+    }
+    .booklet .b-wrap-right img{
+        border:1px solid #E6E3C2;
+    }
+    a#next_page_button,
+    a#prev_page_button{
+        display:none;
+        position:absolute;
+        width:41px;
+        height:40px;
+        cursor:pointer;
+        margin-top:-20px;
+        top:50%;
+        background:transparent url('{% static "user/landing/images/buttons.png" %}') no-repeat 0px -40px;
+    }
+    a#prev_page_button{
+        left:-30px;
+    }
+    a#next_page_button{
+        right:-30px;
+        background-position:-41px -40px;
+    }
+    a#next_page_button:hover{
+        background-position:-41px 0px;
+    }
+    a#prev_page_button:hover{
+        background-position:0px 0px;
+    }
+    .button_login{
+        background-color: orange;
+        color: white;
+        width:auto;
+        position: absolute;
+        margin-left: 145px;
+        padding: 10px;
+        border: none;
+        border-radius: 20px;
+    }
+
+
+</style>
+
+</head>
+<body>
+    <br><br><br><br><br>
+    <button class="button_login" type="submit"><a href="{% url 'login' %}">PROCEED TO LOGIN</a></button>
+    <div class="book_wrapper">
+        <a id="next_page_button"></a>
+        <a id="prev_page_button"></a>
+
+        <div id="mybook" style="display:none;">
+            <div class="b-load">
+
+                <div>
+                    <img src="{% static 'user/images/logo.jpg' %}" alt="" />
+                    <h1>SGL AWARDS</h1>
+                    <h2 style="text-align: center; font-size:25px;">Recognizing and appreciating:<br>
+                      <span 
+                      style="color:blue;font-size: 34px;" 
+                      class="txt-rotate"
+                      data-period="2000"
+                      data-rotate='[ "Agility.", "Innovation.", "Excellence.", "Courage.", "Best Leader!", "CEOs Award" ]'></span>
+                  </h2>
+              </div>
+
+              <div>
+                <img src="{% static 'user/images/logo.jpg' %}" alt=""/>
+                <h1>USER LOGIN</h1>
+                <p>Use your username and Password; <span style="color: red;">AD Credentials</span>
+                    be validated in the database. If the user credentials are correct you will be redirected to Homepage.
+                    If not you will see an error <i>invalid credentials; to mean your user details are incorrect.</i>
+                    <b>Click on <i>reset password</i> if you have forgotten password!</b>
+                    Click on <i>sign up</i> button if you are a new user
+                </p>
+            </div>
+
+            <div>
+                <img src="{% static 'user/images/logo.jpg' %}" alt="" />
+                <h1>HOME PAGE</h1>
+                <p>A successful login will lead you to the home page, Note that in this page items available are displayed by categories
+                    say cars, electronics, watches etc. You can scroll left or down to view more items. Each item is displayed with its
+                    <i>name, price tag and description</i></p>
+                </div>
+                <div>
+                    <img src="{% static 'user/images/logo.jpg' %}" alt="" />
+                    <h1>DECLARE INTEREST IN ITEM</h1>
+                    <p>To declare interest in an item you wish to participate in auction, please hover over the item and click the interested button
+                    on it. You will then be redirected to another page where you will register to participate in the auction.</p>
+                </div>
+                <div>
+                    <img src="{% static 'user/images/logo.jpg' %}" alt="" />
+                    <h1>REGISTRATION AND PAYMENT</h1>
+                    <p>On clicking the Interested button of the item you want to participate in as a bidder, you will be redirected to another page.
+                        Please enter the mpesa number you wish to use in the format <i>2547xxxxxxxxx</i>.
+                        A successful payment will lead to successful printing of receipt and an acknowledgement email.
+                        The item will be displayed under interested items in the interested items menu.
+                    </p>
+
+                </div>
+                <div>
+                    <img src="{% static 'user/images/logo.jpg' %}" alt="" />
+                    <h1>ADDING AN ITEM FOR AUCTION</h1>
+                    <p>A user is allowed to add a new item for auction through the sidebar, Items> add item.The user should duly fill the form provided,
+                        and will be redirected with a message <b>item added successfully.</b>The item will also be displayed on the home page.</p>
+
+                    </div>
+                    <div>
+                        <img src="{%  static 'user/images/logo.jpg' %}" alt="" />
+                        <h1>AUCTION ROOM</h1>
+                        <p>A user will be notified when the auction of their item will be done through email and through notifications.
+                            In an active auction the user can place their bid using the bid form while the auction room is still active.
+                        When it is closed the highest bidder will be declared.</p>
+
+                    </div>
+                    <div>
+                        <img src="{% static 'user/images/logo.jpg' %}" alt="" />
+                        <h1>LOG OUT</h1>
+                        <p>A user can log out by clicking log out on the side menu</p>
+                        >
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(function() {
+                var $mybook 		= $('#mybook');
+                var $bttn_next		= $('#next_page_button');
+                var $bttn_prev		= $('#prev_page_button');
+                var $loading		= $('#loading');
+                var $mybook_images	= $mybook.find('img');
+                var cnt_images		= $mybook_images.length;
+                var loaded			= 0;
+
+                $mybook_images.each(function(){
+                    var $img 	= $(this);
+                    var source	= $img.attr('src');
+                    $('<img/>').load(function(){
+                        ++loaded;
+                        if(loaded == cnt_images){
+                            $loading.hide();
+                            $bttn_next.show();
+                            $bttn_prev.show();
+                            $mybook.show().booklet({
+                        name:               null,                            //
+                        width:              800,                             //
+                        height:             500,                             //
+                        speed:              600,                             //
+                        direction:          'LTR',                           //
+                        //
+                        next:               $bttn_next,          			//
+                        prev:               $bttn_prev,          			//
+
+                    });
+                            Cufon.refresh();
+                        }
+                    }).attr('src',source);
+                });
+
+            });
+
+            // typing effect
+            var TxtRotate = function(el, toRotate, period) {
+              this.toRotate = toRotate;
+              this.el = el;
+              this.loopNum = 0;
+              this.period = parseInt(period, 10) || 2000;
+              this.txt = '';
+              this.tick();
+              this.isDeleting = false;
+          };
+
+          TxtRotate.prototype.tick = function() {
+              var i = this.loopNum % this.toRotate.length;
+              var fullTxt = this.toRotate[i];
+
+              if (this.isDeleting) {
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+
+            this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+            var that = this;
+            var delta = 300 - Math.random() * 100;
+
+            if (this.isDeleting) { delta /= 2; }
+
+            if (!this.isDeleting && this.txt === fullTxt) {
+                delta = this.period;
+                this.isDeleting = true;
+            } else if (this.isDeleting && this.txt === '') {
+                this.isDeleting = false;
+                this.loopNum++;
+                delta = 500;
+            }
+
+            setTimeout(function() {
+                that.tick();
+            }, delta);
+        };
+
+        window.onload = function() {
+          var elements = document.getElementsByClassName('txt-rotate');
+          for (var i=0; i<elements.length; i++) {
+            var toRotate = elements[i].getAttribute('data-rotate');
+            var period = elements[i].getAttribute('data-period');
+            if (toRotate) {
+              new TxtRotate(elements[i], JSON.parse(toRotate), period);
+          }
+      }
+  // INJECT CSS
+  var css = document.createElement("style");
+  css.type = "text/css";
+  css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+  document.body.appendChild(css);
+};
+
+</script>
+
+</body>
+
+</html>
